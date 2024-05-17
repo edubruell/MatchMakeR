@@ -1,3 +1,11 @@
+
+#----------------------------------------------#
+# File:   utilities.R 
+# Author: Eduard Brüll
+# Date creation: 2024-05-17 10:07:29 CEST
+# ~: Cotains simple utility functions 
+#----------------------------------------------#
+
 #' Validate Input Conditions for R Functions
 #'
 #' This internal function validates specified conditions for function inputs and stops the function execution if any condition is not met. It uses a named vector of predicates where each name is the error message associated with the predicate condition.
