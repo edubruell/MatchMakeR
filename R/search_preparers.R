@@ -23,6 +23,7 @@
 #' normalize_text("Café Coñac")
 #' normalize_text("Straße", .transliteration = "Latin-ASCII")
 #' @export
+#' @import stringi
 normalize_text <- function(.text, .transliteration = "De-ASCII") {
   #Validate inputes to the generate_ngrams function
   c("Input .text must be a string" = is.character(.text),
@@ -54,6 +55,7 @@ normalize_text <- function(.text, .transliteration = "De-ASCII") {
 #' as_metaphone("Café")
 #' as_metaphone("Straße")
 #' @export
+#' @import phonics
 as_metaphone <- function(.text){
   # Validate inputs to the function
   c("Input .text must be a string" = is.character(.text)
@@ -76,6 +78,7 @@ as_metaphone <- function(.text){
 #' as_soundex("Café")
 #' as_soundex("Straße")
 #' @export
+#' @import phonics
 as_soundex <- function(.text){
   # Validate inputs to the function
   c("Input .text must be a string" = is.character(.text)
@@ -123,26 +126,6 @@ word_tokens <- function(.text,.min_length=0){
   return(words)
 }
 
-word_tokens <- function(.text, .min_length = 0){
-  # Validate inputs to the function
-  c("Input .text must be a string" = is.character(.text),
-    "Input .min_length must be an integer valued numeric" = is_integer_valued(.min_length)
-  ) |>
-    validate_inputs()
-  
-  # Split the text into words based on spaces
-  words <- unlist(strsplit(.text, "\\s+"))
-  # Remove empty elements if any (this can happen with multiple spaces)
-  words <- words[nzchar(words)]
-  
-  # Filter out words shorter than .min_length
-  if (.min_length > 0) {
-    words <- words[nchar(words) >= .min_length]
-  }
-  
-  return(as.list(words))
-}
-
 
 #' Generate n-grams from text
 #'
@@ -159,6 +142,8 @@ word_tokens <- function(.text, .min_length = 0){
 #' generate_ngrams("hello", 2)
 #' generate_ngrams("an example", 3)
 #' @export
+#' @import data.table
+#' @import stringi
 generate_ngrams <- function(.text,.n) {
   #Validate inputes to the generate_ngrams function
   c(

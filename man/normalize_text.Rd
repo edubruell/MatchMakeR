@@ -14,7 +14,7 @@ defaulting to "De-ASCII".}
 }
 \value{
 Returns a normalized, upper-case version of the input text, with non-alphanumeric characters
-and extra spaces removed.
+        and extra spaces removed.
 }
 \description{
 This function converts a text string to upper case, transliterates it based on the specified

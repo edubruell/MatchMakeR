@@ -13,7 +13,7 @@ generate_ngrams(.text, .n)
 }
 \value{
 Returns a list of n-grams generated from the input text. If the text length is less than n, returns
-an empty character vector.
+        an empty character vector.
 }
 \description{
 This function generates n-grams from a given text string. An n-gram is a contiguous sequence of n items

@@ -7,7 +7,7 @@
 preapare_search_data(.preparers, .df, .key)
 }
 \arguments{
-\item{.preparers}{A list of preparer functions created by \code{search_preparers}.}
+\item{.preparers}{A list of preparer functions created by `search_preparers`.}
 
 \item{.df}{A data frame containing the data to be prepared for search.}
 
