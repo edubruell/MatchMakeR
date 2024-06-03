@@ -159,4 +159,3 @@ deduplicate_table <- function(.table, .duplicates, .key) {
   return(deduplicated_table)
 }
 
-

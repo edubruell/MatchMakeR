@@ -77,18 +77,19 @@ candidates <- search_candidates(
 - **`as_metaphone()`**: Convert a text string to its Metaphone encoding.
 - **`as_soundex()`**: Convert a text string to its Soundex encoding.
 - **`word_tokens()`**: Return a list of word tokens for the input text.
+- **`use_dictionary()`**: Group similar tokens together using a pre-defined dictionary.
 - **`generate_ngrams()`**: Generate n-gram tokens from a text string.
 - **`search_preparers()`**: Create a list of preparer functions based on a formula syntax.
 - **`preapare_search_data()`**: Apply the preparer functions to the specified columns in the input data frame to create a search table
 - **`search_candidates()`**: Search for matching candidates between a base table and a target table using token-based heuristic linkage.
 - **`detect_duplicates()`**: Detect duplicate records within a base table using token-based heuristic linkage.
 - **`deduplicate_table()`**: Use the results of `detect_duplicates` to remove duplicate records from a data table.
+- **`build_similarity_dict()`**: Build a dicionary of similar tokens for a base and a target table.
 
 ## TODO
-
 - Add code to smooth rIP in the search functions (softmax or log rIP).
 - Add feedback mechanism discusses in original search engine
-- Add functions for dictionary-based tokenization using a pre-provided dictionary and functions to generate dictionaries of similar tokens from multiple tables.
+
 
 
 

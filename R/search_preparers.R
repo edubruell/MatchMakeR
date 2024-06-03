@@ -171,6 +171,33 @@ generate_ngrams <- function(.text,.n) {
   return(int_df$ngrams)
 }
 
+#' Use similarity dictionary to group similar tokens together
+#'
+#' This function looks up a token in the similarity dictionary and returns the corresponding token group for a token.
+#'
+#' @param .text A character string or vector representing the token to be looked up.
+#' @param .dict A data table containing the similarity dictionary with tokens and their respective groups.
+#'
+#' @return Returns the token group corresponding to the input token.
+#'
+#' @examples
+#' dict <- data.table(tokens = c("example", "sample"), token_group = c("example/sample", "example/sample"))
+#' use_dictionary("example", dict)
+#' use_dictionary("nonexistent", dict)
+#' @export
+use_dictionary <- function(.text, .dict) {
+  # Validate inputs to the function
+  c("Input .dict must be a data.table" = data.table::is.data.table(.dict)) |>
+    validate_inputs()
+  
+  lookup_row <- function(.r){
+    .dict[tokens %in% .r]$token_group
+  }
+  
+  lapply(.text,lookup_row)
+}
+
+
 # A small helper function to parse the formulas for the search_preparers
 #' Parse Formula for Search Preparers
 #'
