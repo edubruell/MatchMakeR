@@ -79,9 +79,4 @@ build_similarity_dict <- function(.fml,
 }
 
 
-#nachname_LUT <- build_similarity_dict(
-#  .fml = Nachname ~ normalize_text + word_tokens(.min_length = 3),
-#  .base     = base_table,
-#  .target   = target_table,
-#  .method   = "jw",
-#  .threshold = 0.05)
+

@@ -110,7 +110,7 @@ detect_duplicates <- function(.base_table,.base_key, .threshold, .weights = NULL
     , rIP := rarity / sum(rarity), by = c(.base_key, "column")]
   
   
-  join_results <- base_tokens[base_tokens[,.(key_dup=key_base,tokens,column)], on = c("column", "tokens"), nomatch = 0, allow.cartesian = TRUE]
+  join_results <- base_tokens[base_tokens[,.(key_dup=e_base_key,tokens,column),env=list(e_base_key = .base_key)], on = c("column", "tokens"), nomatch = 0, allow.cartesian = TRUE]
   
   # Build the match table
   match_table <- join_results[
