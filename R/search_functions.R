@@ -96,7 +96,7 @@ search_candidates <- function(.base_table, .target_table, .base_key, .target_key
 #'   .threshold = 0.8
 #' )
 #' @export
-detect_duplicates <- function(.base_table,.base_key, .threshold, .weights = NULL) {
+detect_duplicates <- function(.base_table,.base_key, .threshold, .weights = NULL,.min_rarity=0) {
   
   # Use equal weights if weights aren't set
   if (is.null(.weights)) {
@@ -107,7 +107,7 @@ detect_duplicates <- function(.base_table,.base_key, .threshold, .weights = NULL
   
   dictionary <- .base_table[, .N, by = c("column", "tokens")][, rarity := 1 / N][order(-N)]
   base_tokens <- .base_table[dictionary, on = c("column", "tokens"), nomatch = 0][
-    , rIP := rarity / sum(rarity), by = c(.base_key, "column")]
+    , rIP := rarity / sum(rarity), by = c(.base_key, "column")][rarity>=.min_rarity]
   
   
   join_results <- base_tokens[base_tokens[,.(key_dup=e_base_key,tokens,column),env=list(e_base_key = .base_key)], on = c("column", "tokens"), nomatch = 0, allow.cartesian = TRUE]
