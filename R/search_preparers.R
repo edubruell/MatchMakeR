@@ -324,9 +324,10 @@ preapare_search_data <- function(.preparers,
   #Get the names of columns to add to the prepare directives
   columns <- names(.preparers)
   out_df <- data.table()
-
+  df <- copy(.df)
+  
   for (.c in columns) {
-    df <- .df[,tokens:= lapply(.SD,.preparers[[.c]]), .SDcols = (.c)]
+    df <- df[,tokens:= lapply(.SD,.preparers[[.c]]), .SDcols = eval(.c)]
     df <- df[,.(tokens = unlist(tokens)), by = eval((.key))] 
     df <- df[,n_tokens:=.N, by = eval((.key))] 
     df <- df[,column := .c] 
