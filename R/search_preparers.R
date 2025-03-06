@@ -317,24 +317,21 @@ search_preparers <- function(...) {
 #' @examples
 #' search_table_base <- preapare_search_data(prepaers, base_table, "key_base")
 #' @export
-preapare_search_data <- function(.preparers,
-                                 .df,
-                                 .key){
-
-  #Get the names of columns to add to the prepare directives
+preapare_search_data <- function (.preparers, .df, .key) {
   columns <- names(.preparers)
   out_df <- data.table()
-  df <- copy(.df)
-  
   for (.c in columns) {
-    df <- df[,tokens:= lapply(.SD,.preparers[[.c]]), .SDcols = eval(.c)]
-    df <- df[,.(tokens = unlist(tokens)), by = eval((.key))] 
-    df <- df[,n_tokens:=.N, by = eval((.key))] 
-    df <- df[,column := .c] 
-    #print(df)
-    out_df <- rbind(out_df,df)
-  } 
+    df <- copy(.df)
+    df <- df[, `:=`(tokens, lapply(.SD, .preparers[[.c]])), 
+             .SDcols = eval(.c)]
+    df <- df[, .(tokens = unlist(tokens)), by = eval((.key))]
+    df <- df[, `:=`(n_tokens, .N), by = eval((.key))]
+    df <- df[, `:=`(column, .c)]
+    out_df <- rbind(out_df, df)
+  }
+  out_df <- unique(out_df)
   return(out_df)
 }
+
 
 
