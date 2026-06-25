@@ -1,5 +1,7 @@
 # MatchMakeR: Heursitc index-based record linkage in R
 
+> ⚠️ **This package was just the experimental first exploration for what is now [joinery](https://github.com/edubruell/joinery)** This is a buggy first attempt to implement the main concept of joinery. Use it instead for any productive work. 
+
 **MatchMakeR** is an experimental first step implementation of an index-based heuristic record linkage method. This package reimplements the main ideas from [Thorsten Doherr's search engine](https://github.com/ThorstenDoherr/searchengine/), originally written in FoxPro. The aim of the package is to link large-scale data by fuzzy criteria such as names and addresses using a word/token-driven heuristic. This approach provides an efficient candidate retrieval mechanism, replacing traditional blocking strategies. Reimplementing this in R makes it easier to use the approach in existing data pipelines. 
 
 ## Features
